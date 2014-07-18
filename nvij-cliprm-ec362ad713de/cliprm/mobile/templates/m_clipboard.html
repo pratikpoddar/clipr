@@ -1,0 +1,34 @@
+{% extends "m_prodlist.html" %}
+{% block title %}{{board_owner.fullname}}{% endblock %}
+{% block rightPanel %}
+	<div data-position-fixed="true" data-position="right" data-display="overlay" data-dismissible="true" data-role="panel" id="searchbox" data-theme="b">
+		<ul data-role="listview" data-theme="b" class="nav-boards">
+			{% for board in boards %}
+				<li><a href="?board={{ board.cliptag }}" > {{ board.name }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endblock %}
+{% block header-right-btn %}
+		<a href="#searchbox" data-display="overlay" id="search-btn" data-icon="paper-clip"  data-position="left" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-theme="b" title="Boards">Boards</a>
+{% endblock %}
+{% block page-description %}
+	<div class="user-info">
+		<div class="profile">
+			<span class="profile-name">{{board_owner.fullname}}</span>
+			<span class="profile-thumbnail"><img src="https://graph.facebook.com/{{board_owner.userid}}/picture?width=90&height=90"></span>
+			<br/>
+			{% if is_following %}
+				<a href="#" data-icon="check" data-role="button" data-inline="true" data-mini="true" class="follow-btn following" data-following="true" data-uid="{{ board_owner.userid }}">Following</a>
+			{% else %}
+				<a href="#" data-role="button" data-inline="true" data-mini="true" class="follow-btn" data-following="false" data-uid="{{ board_owner.userid }}">Follow</a>
+			{% endif %}
+		</div>
+		<div class="activity-data">
+			<span> <a class="user-stat-link current" > <b>{{ stats.clipped }}</b> Clipped </a></span>
+			<span> <a class="user-stat-link" href="/{{ board_owner.userid }}/added"> <b>{{ stats.added }}</b> Added </a></span>
+			<span> <a class="user-stat-link" href="/{{ board_owner.userid }}/followers"> <b>{{ stats.followers }}</b> Followers </a></span>
+			<span> <a class="user-stat-link" href="/{{ board_owner.userid }}/following"> <b>{{ stats.following }}</b> Following </a></span>
+		</div>
+	</div>
+{% endblock %}

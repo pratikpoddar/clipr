@@ -1,0 +1,3 @@
+use clipr;
+show tables;
+select * from `clipr`.`productDetail`

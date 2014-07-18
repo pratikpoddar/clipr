@@ -1,0 +1,6 @@
+@charset "utf-8";
+
+.preloader { 
+	background:url(../img/loader18.gif) center center no-repeat transparent; 
+	min-height: 24px;
+ }

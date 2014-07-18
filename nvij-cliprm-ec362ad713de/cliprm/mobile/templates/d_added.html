@@ -1,0 +1,39 @@
+{% extends "d_prodlist.html" %}
+{% block page_title %}{{board_owner.fullname}} - Clipr (The online shopping community){% endblock %}
+{% block page_id %}
+<div class="container" id="profilecontainer">
+{% endblock %}
+{% block page-description %}
+<div id = "profilepage">
+	<div class="user-info">
+		<div class="profile">
+			<span class="profile-name">{{board_owner.fullname}}</span>
+			<span class="profile-thumbnail"><img src="https://graph.facebook.com/{{board_owner.userid}}/picture?width=90&height=90"></span>
+			<br/>
+			{% if is_following %}
+				<span class="profile-follow" rel="tooltip" data-placement="right" data-original-title='Already Following'> 
+					<a href="#" class="btn btn-primary follow-btn following" data-following="true" data-uid="{{ board_owner.userid }}" ><i class="icon-ok-sign"></i> Following</a>
+				</span>
+			{% else %}
+				<span class="profile-follow" rel="tooltip" data-placement="right" data-original-title='Follow'> 
+					<a href="#" class="btn btn-primary follow-btn" data-following="false" data-uid="{{ board_owner.userid }}" ><i class="icon-ok-sign"></i> Following</a>
+				</span>
+			{% endif %}
+		</div>
+		<ul class="nav nav-tabs">
+			<li>
+				<a class="user-stat-link" href="/{{ board_owner.userid }}"> <b>{{ stats.clipped }}</b> Clipped </a>
+			</li>
+			<li class="active">
+				<a class="user-stat-link current"> <b>{{ stats.added }}</b> Added </a>
+			</li>
+			<li>
+				<a class="user-stat-link" href="/{{ board_owner.userid }}/followers"> <b>{{ stats.followers }}</b> Followers </a>
+			</li>
+			<li>
+				<a class="user-stat-link" href="/{{ board_owner.userid }}/following"> <b>{{ stats.following }}</b> Following </a>
+			</li>
+		</ul>
+	</div>
+{% endblock %}
+

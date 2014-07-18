@@ -1,0 +1,17 @@
+drop table if exists `clipr`.`productDetail`;
+CREATE  TABLE IF NOT EXISTS `clipr`.`productDetail` (
+  `productid` INT NOT NULL AUTO_INCREMENT ,
+  `siteId` INT NOT NULL,
+  `link` VARCHAR(500) NOT NULL ,
+  `title` VARCHAR(200) NOT NULL ,
+  `markprice` INT UNSIGNED NOT NULL ,
+  `price` INT UNSIGNED NOT NULL ,
+  `description` BLOB NULL ,
+  `description2` BLOB NULL ,
+  `recid` Blob NULL ,
+  `image` VarChar(1000) NOT NULL,
+  `buylink` VARCHAR(200) NULL ,
+  `category` VARCHAR(400) NULL ,
+  `demographics` SMALLINT(6) NULL ,
+  `timestamp` Timestamp,
+  PRIMARY KEY (`productid`)  )

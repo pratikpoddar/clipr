@@ -1,0 +1,307 @@
+[class^="icon-"][disabled], [class*=" icon-"][disabled], [class^="icon-"].disabled, [class*=" icon-"].disabled { 
+	cursor: default; 
+	opacity: 0.25; 
+}
+
+#magazine .shadow{
+	display: none;
+}
+.magazine{
+	width:1000px;
+	height:600px;
+	text-align:center;
+}
+.mag-container
+{
+	
+	width:400px;
+	height:450px;
+	position:relative;
+	margin-bottom:0px;
+	text-align:center;
+}
+.mag-prodimg
+{
+	margin-bottom:20px;
+	margin-top: 60px;
+	margin:0px auto;
+	width:380px;
+	text-align:center;
+	position:relative;
+}
+.imgcontainer
+{
+	display: inline-block;
+	position:relative;
+	margin-top: 45px;
+	text-align:center;
+	margin:auto;
+	max-width: 100%;
+}
+
+.imgcontainer-inner{
+	/*overflow: hidden;*/
+	display: inline-block;
+	position: relative;
+	margin:auto;
+	overflow: hidden;
+	max-width: 100%;
+}
+
+.imgcontainer img{
+	max-width:100%;
+	max-height:370px;
+	border-radius: 0px 0px 5px 5px;
+/*	-moz-box-shadow: 2px 2px 1px #787878;
+	-webkit-box-shadow: 2px 2px 1px #787878;
+	box-shadow: 2px 2px 1px #787878;
+	border-style:solid;
+	border-color:black;
+	border-width:1px;
+*/	position:relative;
+	text-align:center;
+}
+.mag-price
+{
+	border-radius: 4px;
+	/*right:-5px;*/
+	right:-200px;
+	font-weight:normal;
+	color:white; 
+	top:20px;
+	background-color:#002640;
+	opacity:0.9;
+	padding:10px;
+	z-index:55;
+	position:absolute;
+}
+.mag-desc
+{
+	border-radius: 4px;
+	/*left:-5px;*/
+	left:-500px;
+	max-width:90%; 
+	color:white; 
+	position:absolute;
+	bottom:30px;
+	background-color:#002640;
+	opacity:0.9;
+	padding:5px;
+	padding-left: 0px;
+	min-height: 50px
+}
+
+.mag-shadow{
+	border:none; 
+	border-size:0px; 
+	border-width:0px; 
+	position:absolute;
+	top:2px;
+	background-color:none;
+	padding:0px;
+}
+
+.evenshadow
+{
+	left:-3px;
+}
+
+.oddshadow
+{
+	right:-3px;
+}
+
+.even-container{
+	margin-left:50px;
+}
+
+.odd-container{
+	margin-right:50px;
+}
+
+.mag-shadow img
+{
+	height:496px;
+	width:451px; 
+	border-width:0px; 
+	box-shadow:none; 
+	-webkit-box-shadow:none; 
+	-moz-box-shadow:none;
+}
+
+.mag-btns
+{
+	top:-70px;
+	padding: 4px;
+	color: #002640;
+	background-color: #d5d9e0;
+	border-radius: 0px 0px 4px 4px;
+	position: absolute;
+}
+
+.mag-btns-even-container{
+	left:-35px;
+}
+
+.mag-clipcount-btn{
+	font-size: 14px;
+}
+
+.mag-btns-odd-container{
+	right:-35px;
+}
+.mag-btn
+{
+	font-size:22px;
+	line-height:30px;
+	cursor: pointer;
+	font-weight: lighter;
+}
+
+.clippers
+{
+	float:left; 
+	left:20px;
+	bottom:20px;
+	position:absolute;
+	padding:10px;
+}
+
+.pagenum
+{
+	text-align:right; 
+	right:30px; 
+	bottom:5px;
+	position:absolute;
+}
+
+.magazine div
+{
+	text-align:center;
+}
+::selection{ 
+	 background:#666;
+	 color:white;
+	 text-shadow:none;
+}
+
+::-moz-selection{
+  	background:#666;
+  	color:white;
+  	text-shadow:none;
+}
+
+#viewport{
+	overflow: hidden;
+	
+}
+
+.pages, #controllers{
+	width:900px;
+	height:500px;
+	
+	position:relative;
+	margin:auto;
+	
+}
+
+
+.x1024 .pages, .x1024 #controllers{
+	width:1024px;
+}
+
+.x1024 .page, .x1024 #shadow-page{
+	width:512px;
+}
+
+.clear{
+	clear:both;
+}
+
+.page{
+	width:450px;
+	height:500px;
+	overflow:hidden;
+	background:white;
+	top:0px;
+	right:0px;
+	background-color:#F5F5F5;
+	color:000;
+	font-size:12px;
+}
+
+.page-wrapper{
+	overflow: hidden;
+}
+.mag-title{
+	border-radius: 4px;
+	color:white;
+	background-color:#002640;
+	opacity:0.9;
+	text-align:center;
+	width: 100%;
+	position: absolute;
+	top: -35px;
+}
+
+.mag-title h1{
+	font-size:16px;
+	font-weight:normal;
+	margin:5px auto;
+}
+
+
+.page-content{
+
+	border-color:black;
+	border-style:solid;
+	text-align:center;
+
+	
+	z-index:50;
+}
+
+.page-content a{
+	text-decoration:none;
+	color:#2F548E;
+	
+}
+
+.page-content a:hover{
+	text-decoration:underline;
+}
+
+.page.p1{
+	 background-size:100% 100%;
+}
+
+
+.page.p1 p{
+	margin-top:100px;
+	text-align:center;
+	font:40px "Candara", arial;
+	color:#000;
+}
+.mag-footer{
+	position: absolute;
+    bottom: 10px;
+    padding-right: 20px;
+}
+
+.mag-board-index{
+}
+
+#toplevelcontainer{
+	position: relative;
+}
+.jcarousel-clip-vertical{
+	max-height: 500px;
+}
+#boardindexCarousel{
+	display: inline-block;
+	margin-bottom: 5px;
+}
+.pageContainer{
+	background-color:#fff;
+	height:100%;
+}

@@ -1,0 +1,44 @@
+SELECT distinct value,score*LOG(topicScore,10), count(*) as newScore, documentFrequency from likesUniverse, fblike, likeCategorizeNormalized \
+    where fblike.likeid = likesUniverse.id and fblike.likeid = likeCategorizeNormalized.likeid and  \
+    fblike.userid = 717323242 and attribute != 'country' and attribute != 'nationality' and \
+    attribute != 'language' and attribute != 'gender' and value != 'media_common' and      \
+    value != 'organization' and value !='people' and  value !='user' group by value;
+
+SELECT distinct value,score*LOG(topicScore,10), count(*) as newScore, documentFrequency from likesUniverse, fblike, likeCategorizeNormalized \
+    where fblike.likeid = likesUniverse.id and fblike.likeid = likeCategorizeNormalized.likeid and  \
+    fblike.userid = "+str(userid)+ " and attribute != 'country' and attribute != 'nationality' and \
+    attribute != 'language' and attribute != 'gender' and value != 'media_common' and      \
+    value != 'organization' and value !='people' and  value !='user' group by value;
+
+SELECT distinct documentFrequency, level, likeCategorizeNormalized.topicScore, likesUniverse.likes,  likeCategorizeNormalized.value, \
+	likeCategorizeNormalized.score from likesUniverse join fblike join likeCategorizeNormalized on fblike.likeid = likesUniverse.id and \
+	fblike.likeid = likeCategorizeNormalized.likeid  where fblike.userid = " +userid+ " and (likeCategorizeNormalized.score > 3 or \
+	likeCategorizeNormalized.level > 1) and attribute != 'country' and attribute != 'nationality' and attribute != 'language' and \
+	attribute != 'gender' and value != 'media_common' and  value != 'organization' and value !='people' and  value !='user';
+
+
+
+
+
+ update likeCategorizeNormalized as t1 join (select value , count(*) as docFreq from (select value, 1 as myCount from likeCategorizeNormalized group by value, likeid order by myCount desc)  as tempTable group by value  )  as t2 on t1.value = t2.value set t1.documentFrequency = t2.docFreq;
+
+
+
+
+SELECT distinct likeCategorizeNormalized.value, score*LOG(topicScore,10),LOG(1+level), documentFrequency \
+	from likesUniverse join fblike join likeCategorizeNormalized on fblike.likeid = likesUniverse.id and \
+	fblike.likeid = likeCategorizeNormalized.likeid  where fblike.userid = 717323242 and (likeCategorizeNormalized.score > 3 or \
+	likeCategorizeNormalized.level > 1) and attribute != 'country' and attribute != 'nationality' and attribute != 'language' and \
+	attribute != 'gender' and value != 'media_common' and  value != 'organization' and value !='people' and  value !='user' and value !='location';
+
+SELECT * from (SELECT distinct likeCategorizeNormalized.likeid, likeCategorizeNormalized.value as val, LOG(1+level) as levelScore, documentFrequency  \
+	from likesUniverse join fblike join likeCategorizeNormalized on fblike.likeid = likesUniverse.id and  fblike.likeid = likeCategorizeNormalized.likeid  \
+	where fblike.userid = 717323242 and (likeCategorizeNormalized.score > 3) and topicScore > 40 and attribute != 'country' and attribute != 'nationality' and attribute != 'language' \
+	and  attribute != 'gender' and value != 'media_common' and  value != 'organization' and value !='people' and  value !='user' and value !='location') as t1;
+
+
+SELECT count(*) as newScore,value from fblike join likeCategorizeNormalized      \
+    on fblike.likeid = likeCategorizeNormalized.likeid and   \
+    fblike.userid = 717323242 and attribute != 'country' and attribute != 'nationality' and      \
+    attribute != 'language' and attribute != 'gender' and value != 'media_common' and           \
+    value != 'organization' and value !='people' and  value !='user' group by value order by newScore desc limit 1;

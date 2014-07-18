@@ -1,0 +1,144 @@
+{%extends "d_base.html" %}
+{% block infobar %}
+{% endblock %}
+{% block page_id %}
+<div class="container" id="narrowContainer">
+{% endblock %}
+{%block page_content %}
+<div>
+	<script type="text/javascript">
+		function addProduct() {
+			mixpanel.track("add product");
+			_gaq.push(["_trackEvent", "Auto-Action", "add-product"]);
+
+			var link = encodeURIComponent($("#link").val());
+			var uid = {{user.userid}};
+			document.location.href="addproduct?link="+link;
+		}
+	</script>
+	<div class="row-fluid">
+	{% if fail %}
+		<div class='alert alert-block alert-error fade in'>
+			<button type='button' class='close' data-dismiss='alert'>×</button>
+			<h4 class='alert-heading'>Oh snap! Something is not right here!</h4>
+			<p>Please try adding other products from the following websites.</p>
+		</div>
+		<br/>
+	{% else %}
+		<h4>Did not find the product you want to clip?</h4>
+		<h4>You can add products by adding the product link from the following websites:</h4><br/>
+	{% endif %}
+	</div>
+	{% if user.is_authenticated %}
+	<div class='row-fluid' align='center'>
+		<h3>Add Product in less than 5 seconds</h3>
+		<h4>Enter the link of the product page from the seller website and click on 'Add Product'. Done!</h4>
+		<input type='text' id='link' placeholder='Enter Link..' class='span6' style='height:30px'></input>
+		<br/>
+		<span onClick='addProduct()' class='btn btn-primary'>Add Product</span>
+	</div>
+	{% endif %}
+	<div style="margin-top: 20px;border-radius: 4px;">
+		<div class="row-fluid" style="background-color: #fff;">
+			<div class="span12">
+				<h2 style="text-align: center;">Supported websites</h2>
+			</div>
+		</div>
+		<div class="row-fluid" style="background-color: #fff;">
+			<span class="span3" style="text-align:center;">
+				<a target="_blank" href="http://www.myntra.com">
+					<img class="companyimg" src="/companylogos/myntra.png" /><br/>
+				</a>
+				<a target="_blank" href="http://www.afday.com">
+					<img class="companyimg" src="/companylogos/afday.png" /><br/>
+				</a>
+				<a target="_blank" href="http://www.adventure18.com">
+					<img class="companyimg" src="/companylogos/adventure18.jpg"/><br/>
+				</a>
+				<a target="_blank" href="http://www.bluestone.com">
+					<img class="companyimg" src="/companylogos/bluestone.png"/><br/>
+				</a>
+				<a target="_blank" href="http://www.itsourstudio.com">
+					<img class="companyimg" src="/companylogos/itsourstudio.png?ver=1.2"/><br/>
+				</a>
+				<a target="_blank" href="http://www.styletag.com">
+					<img class="companyimg" src="/companylogos/styletag.png" /><br/>
+				</a>
+				<a target="_blank" href="http://www.thechemicallocha.com">
+					<img class="companyimg" src="/companylogos/chemicallocha.jpg" /><br/>
+				</a>
+			</span>
+			<span class="span3" style="text-align:center;">	
+				<a target="_blank" href="http://www.postergully.com">
+					<img class="companyimg" src="/companylogos/postergully.png" /><br/>
+				</a>
+				<a target="_blank" href="http://www.craftsvilla.com">
+					<img class="companyimg" src="/companylogos/craftsvilla.jpg"/><br/>
+				</a>
+				<a target="_blank" href="http://www.fabfurnish.com">
+					<img class="companyimg" src="/companylogos/fabfurnish.jpg"/><br/>
+				</a>
+				<a target="_blank" href="http://www.flipkart.com">
+					<img class="companyimg" src="/companylogos/flipkart.png"/><br/>
+				</a>
+				<a target="_blank" href="http://www.bewakoof.com">
+					<img class="companyimg" src="/companylogos/bewakoof.jpg"/><br/>
+				</a>
+				<a target="_blank" href="http://www.shortcircuit.in">
+					<img class="companyimg" src="/companylogos/shortcircuit.gif"/><br/>
+				</a>
+			</span>
+			<span class="span3" style="text-align:center;">
+				<a target="_blank" href="http://www.fetise.com">
+					<img class="companyimg" src="/companylogos/fetise.gif"/><br/> 
+				</a>
+				<a target="_blank" href="http://www.happilyunmarried.com">
+					<img class="companyimg" src="/companylogos/happilyunmarried.png"/><br/>
+				</a>
+				<a target="_blank" href="http://www.rangiru.com">
+					<img class="companyimg" src="/companylogos/rangiru.png"/><br/>
+				</a>
+				<a target="_blank" href="http://www.roomstory.com">
+					<img class="companyimg" src="/companylogos/roomstory.jpg"/><br/>
+				</a>
+				<a target="_blank" href="http://www.hitplay.in">
+					<img class="companyimg" src="/companylogos/hitplay.png"/><br/>
+				</a>
+				<a target="_blank" href="http://shop.inonit.in">
+					<img class="companyimg" src="/companylogos/shopinonit.jpg"/><br/>
+				</a>
+			</span>
+			<span class="span3" style="text-align:center;">
+				<a target="_blank" href="http://www.shaze.in">
+					<img class="companyimg" src="/companylogos/shaze.jpg"/><br/>
+				</a>
+				<a target="_blank" href="http://www.villcart.com">
+					<img class="companyimg" src="/companylogos/villcart.png"/><br/>
+				</a>
+				<a target="_blank" href="http://www.fashionara.com">
+					<img class="companyimg" src="/companylogos/fashionara.png"/><br/>
+				</a>
+				<a target="_blank" href="http://www.chumbak.com">
+					<img class="companyimg" src="/companylogos/chumbak.png"><br>
+				</a>
+				<a target="_blank" href="http://www.cbazaar.com">
+					<img class="companyimg" src="/companylogos/cbazaar.png"/><br/>
+				</a>
+				<a target="_blank" href="http://www.bluegape.com">
+					<img class="companyimg" src="/companylogos/bluegape.png"/><br/>
+				</a>
+			</span>
+		</div>
+	</div>
+	<br/><br/><br/><br/>
+</div>
+{% endblock %}
+{% block tag_modal %}
+{% endblock %}
+{% block highlight_nav %}
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#add-nav').addClass('active-cl');
+		})
+	</script>
+{% endblock %}

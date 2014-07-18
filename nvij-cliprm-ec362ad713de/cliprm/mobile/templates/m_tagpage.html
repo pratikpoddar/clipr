@@ -1,0 +1,64 @@
+{% extends "m_base.html" %}
+{% block title %}Clipr{% endblock %}
+{% block cssincludes %}{% endblock %}
+{% block jsincludes %}{% endblock %}
+{% block pagedefinition %}
+	<div data-role="page" id="tag-dialog-{{pid}}">
+{% endblock %}
+{% block leftPanel %}{% endblock %}
+{% block rightPanel %}{% endblock %}
+{% block header %} 
+	<div data-role="header" data-theme="a">
+		<h1 class="tag-heading">Tag a friend</h1>
+	</div>
+{% endblock %}
+{% block content %}
+	<div data-role="content" data-theme="c">
+		<form class="tag-form" data-pid="{{pid}}">
+			<p class="tag-desc">Tag a Clipr or Facebook friend to share this product with them</p>
+			<input class="tag-friend" placeholder="Enter a friend's name" id="tagfriend" type="text" >
+			<textarea class="tagmessage" rows="3" placeholder="Add a message(Optional)"></textarea>
+			<a href="#productpage" class="tag-submit" data-role="button" data-rel="back" data-theme="b">Tag</a>
+		</form>
+	</div>
+{% endblock %}
+{% block customjs %}{% endblock %}
+{% block onloadjs %}
+	{% with pid|stringformat:"s" as new_pid %}
+	{% with "#tag-dialog-"|add:new_pid as pageId %}
+	<script type="text/javascript">
+		$(document).on('pagebeforeshow', function(){
+			$('{{ pageId }} #tagfriend').select().focus();
+			$("{{ pageId }} #tagfriend").autoSuggest("getfriends", {
+				selectedItemProp: "name", 
+				searchObjProps: "name",
+				selectedValuesProp: "id",
+				keyDelay: 200,
+				retrieveLimit: 5,
+				beforeRetrieve: function(str){
+				  return str.replace("@","");
+				},
+				formatList: function(data,elem){
+				  elem.html("<div class='typeahead_wrapper'>"
+					+ "<img class='typeahead_photo' src='http://graph.facebook.com/" + data.id + "/picture?type=square' />"
+					+ "<div class='typeahead_labels'>"
+					+ "<div class='typeahead_primary'>" + data.name + "</div>"
+					+ "</div>"
+					+ "</div>");
+				  return elem;
+				},
+				retrieveComplete: function(data){
+					if(data.not_authenticated)
+						window.location.href=data.login_url+'?next='+encodeURIComponent('http://'+window.location.host+'/product/'+pid);
+					else
+						return data.result;
+				},
+				startText: "Enter a friend's name",
+				resultsHighlight:false
+			});
+			bindTagForm($('{{ pageId }} .tag-form'))
+		});
+	</script>
+	{% endwith %}
+	{% endwith %}
+{% endblock %}

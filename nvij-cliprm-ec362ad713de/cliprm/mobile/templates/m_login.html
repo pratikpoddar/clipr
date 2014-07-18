@@ -1,0 +1,22 @@
+{% extends "m_base.html" %}
+{% block title %}Clipr{% endblock %}
+{% block cssincludes %}{% endblock %}
+{% block jsincludes %}{% endblock %}
+{% block pagedefinition %}
+    <div class="ui-responsive-panel loginpage" data-role="page" data-url="/login?next={{ next }}" >
+{% endblock %}
+{% block header %}{% endblock %}
+
+{% block content %}
+    <div data-role="content" class="logindiv">
+        <div class="login-wrap">
+            <div class="login-inner-div">
+                <a rel="external" href="{% url 'socialauth_begin' 'facebook' %}?next={{ next }}" id="login-btn" class="ui-link">
+                    <img src="/image/facebook-connect.png">
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+{% block customjs %}{% endblock %}
+{% block onloadjs %}{% endblock %}

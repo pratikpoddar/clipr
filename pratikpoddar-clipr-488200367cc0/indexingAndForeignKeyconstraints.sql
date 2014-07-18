@@ -1,0 +1,28 @@
+alter table addedProduct add foreign key(productid) references productDetail(productid) on delete restrict;
+alter table cliprTagTable add foreign key(cliprTag) references allTags(id) on delete restrict;
+alter table cliprTagTable add foreign key(productid) references productDetail(productid) on delete restrict;
+alter table productGroup add foreign key(groupid) references groupTable(id) on delete restrict;
+alter table productGroup add foreign key(productid) references productDetail(productid) on delete cascade;
+alter table activityTable add foreign key(objproductid) references productDetail(productid);
+ (had to run these 2 as well alter table activityTable modify column objproductid int(50); update activityTable set objproductid = NULL where objproductid = 0;)
+alter table fbdata engine = InnoDB;
+alter table activityTable modify column userid bigint(100) unsigned;
+alter table activityTable add foreign key(userid) references fbdata(userid) on delete restrict;
+alter table activityTable modify column objuserid bigint(100) unsigned;
+alter table activityTable add foreign key(objuserid) references fbdata(userid) on delete restrict;
+alter table reportedProducts add foreign key(productid) references productDetail(productid) on delete cascade;
+alter table clipsTable add foreign key(userid) references fbdata(userid) on delete restrict;
+alter table clipsTable add foreign key(productid) references productDetail(productid)  on delete restrict;
+alter table deletedProducts add foreign key(productid) references productDetail(productid) on delete cascade;
+alter table fbfriend add foreign key(userid) references fbdata(userid) on delete restrict;
+alter table interestsTable add foreign key(interest) references allTags(id); 
+alter table interestsTable modify column userid bigint(100) unsigned;
+alter table interestsTable add foreign key(userid) references fbdata(userid) on delete restrict;
+alter table notificationTime add foreign key(userid) references fbdata(userid) on delete restrict;
+alter table prodPriceHistory add foreign key(productid) references productDetail(productid) on delete cascade;
+alter table userTopProducts add foreign key(productid) references productDetail(productid) on delete cascade;
+alter table userTopProducts add foreign key(userid) references fbdata(userid) on delete restrict;
+alter table emailCommunication add foreign key(userid) references fbdata(userid) on delete restrict;
+alter table fbfriend add unique index (userid, friendid, follow);
+alter table fblike add unique index (userid, likeid);
+alter table likesUniverse add unique index (likes, category, source);

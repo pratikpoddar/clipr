@@ -1,0 +1,10 @@
+{% extends "m_userlist.html" %}
+{% block title %}{{board_owner.fullname}} - Followers{% endblock %}
+{% block user-details %}
+	<div class="activity-data">
+		<span> <a class="user-stat-link" href="/{{ board_owner.userid }}"> <b>{{ stats.clipped }}</b> Clipped </a></span>
+		<span> <a class="user-stat-link" href="/{{ board_owner.userid }}/added"> <b>{{ stats.added }}</b> Added </a></span>
+		<span> <a class="user-stat-link" href="/{{ board_owner.userid }}/followers"> <b>{{ stats.followers }}</b> Followers </a></span>
+		<span> <a class="user-stat-link current"> <b>{{ stats.following }}</b> Following </a></span>
+	</div>
+{% endblock %}

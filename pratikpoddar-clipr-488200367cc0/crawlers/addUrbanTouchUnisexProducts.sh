@@ -1,0 +1,5 @@
+python addProduct.py --link="""https://www.urbantouch.com/wildcraft-green-casual-backpack/8903338007272/p/"""
+python addProduct.py --link="""https://www.urbantouch.com/starmark-black-backpack/8904152301621/p/"""
+python addProduct.py --link="""https://www.urbantouch.com/american-tourister-purple-backpack/5414847282461/p/"""
+python addProduct.py --link="""https://www.urbantouch.com/american-tourister-black-backpack/5414847282539/p/"""
+python addProduct.py --link="""https://www.urbantouch.com/american-tourister-black-red-backpack/5414847282416/p/"""

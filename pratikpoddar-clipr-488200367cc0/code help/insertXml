@@ -1,0 +1,2 @@
+LOAD XML LOCAL INFILE 'healthkart.xml' INTO TABLE `clipr`.`productdetail` ROWS IDENTIFIED BY '<item>';
+LOAD XML LOCAL INFILE 'bluestone.xml' INTO TABLE `clipr`.`productdetail` ROWS IDENTIFIED BY '<item>';

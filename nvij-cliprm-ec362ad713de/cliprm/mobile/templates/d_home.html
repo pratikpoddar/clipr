@@ -1,0 +1,38 @@
+{% extends "d_prodlist.html" %}
+{% block page_title %} 
+	{% if user.is_authenticated %}
+		{{user.fullname}} - Trending products - Clipr (The online shopping community)
+	{% else %}
+		Trending products - Clipr (The online shopping community)
+	{% endif %}
+{% endblock %}
+{% block highlight_nav %}
+	{% if user.is_authenticated %}
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#trending-nav').addClass('active-cl');
+		})
+	</script>
+	{% endif %}
+{% endblock %}
+{% block onloadjs %}
+<script type="text/javascript">
+	function adjustColumns(){
+		var w_w = $(window).width();
+		var $container = $('#adjustableContainer');
+		var max_w = w_w-20;
+		var p_w = 292;
+		var num_cols = parseInt(max_w/p_w);
+		$container.width(num_cols*p_w+4);
+		console.log(num_cols);
+	}
+	$(document).ready(function(){
+		$(window).bind('resize', function() {
+			adjustColumns();
+		});
+		adjustColumns();
+	})
+</script>
+{% endblock %}
+{% block customjs %}
+{% endblock %}

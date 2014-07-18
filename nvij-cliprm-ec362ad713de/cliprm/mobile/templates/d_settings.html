@@ -1,0 +1,126 @@
+{% extends "d_base.html" %}
+{% block page_title %}{{ user.fullname }} - Settings{% endblock %}
+{% block meta_tags %}
+{% endblock %}
+{% block page_id %}
+<div class="container" id="narrowContainer">
+{% endblock %}
+{% block page_content %}
+<div class="row-fluid" id="settingsDiv">
+	<span class="span3 well" style="text-align:center">
+		<img style='max-width:200px' id='profilepic' src='http://graph.facebook.com/{{user.userid}}/picture?type=large'></img>
+		<h3>{{user.fullname}}</h3>
+		<br/>
+		<a href="/clips" style="width:80%" class="btn btn-large btn-primary" >
+			Go to Clip Board
+		</a>
+		<br/><br/>
+		<div>
+		{% for stat_name,stat_value in stats.items %}
+			<span>
+				<a class='settings-stat modalbox' href='#userinfo' onClick='dispatchModalAction("{{stat_name}}");' >
+					<div class='sidebarlabel clearfix'>
+						<span class='pull-left stat-value' >{{stat_name}}</span>
+						<span class='pull-right stat-key' >{{stat_value}}</span>
+					</div>
+				</a>
+			</span>
+		{% endfor %}
+		</div>
+	</span>
+	<span class="span4 well" style='font-size:100%;text-align:left;'>
+		<span class='profilehead'>Name: </span><div>{{user.fullname}}</div><br>
+		{% if user.email %}
+		<span class='profilehead'>Email: </span><div>{{user.email}}</div><br>
+		{% endif %}
+		{% if user.birthday %}
+		<span class='profilehead'>Birthday: </span><div>{{user.birthday}}</div><br>
+		{% endif %}
+		{% if user.hometown %}
+		<span class='profilehead'>Hometown: </span><div>{{user.hometown}}</div><br>
+		{% endif %}
+		{% if user.location %}
+		<span class='profilehead'>Location: </span><div>{{user.location}}</div><br>
+		{% endif %}
+		{% if user.gender %}
+		<span class='profilehead'>Gender: </span><div>{{user.gender}}</div><br>
+		{% endif %}
+		{% if user.education %}
+			<span class='profilehead'>Education: </span><div>
+				{% for elem in user.education_as_list %}
+					{{elem}}
+					{% if not forloop.last %}
+						<br/>
+					{% endif %}
+				{% endfor %}
+			</div><br>
+		{% endif %}
+		{% if user.work %}
+			<span class='profilehead'>Work: </span><div>
+				{% for elem in user.work_as_list %}
+					{{elem}}
+					{% if not forloop.last %}
+						<br/>
+					{% endif %}
+				{% endfor %}
+			</div><br>
+		{% endif %}
+	</span>
+
+	<span class="span4">
+		<div class="well">
+			<span class="profilehead">Communication from Clipr:</span><br/><br/>
+			<label class="checkbox">
+				<input id="emailgift" type="checkbox">&nbsp;&nbsp;Reminder and gift recommendations for friends
+			</label>
+			<label class="checkbox">
+				<input id="emaildeal" type="checkbox">&nbsp;&nbsp;Personalised exclusive deals from clipr partners (once a month)
+			</label>
+			<label class="checkbox">
+				<input id="emailbulk" type="checkbox">&nbsp;&nbsp;New products and deals from clipr partners (once a week)
+			</label>
+			<label class="checkbox">
+				<input id="fbactivitypost" type="checkbox">&nbsp;&nbsp;Posting on FB as Clipr activity. No spam! Just activity stream
+			</label>
+		</div>
+				
+		<div class="well">
+			<span class="profilehead">Interests</span><a href='interests' class='ajax-link' style='font-size:95%;float:right'>Edit</a><br/><br/>
+			
+		<b>{{interests|length}} Interests Submitted</b><br/>
+		{% for interest in interests %}
+			{{interest.interest.tagname_text}} <br/>
+		{% endfor %}
+		</div>
+	</span>
+</div>
+<script type="text/javascript">
+	function changeprefs (col) {
+		$.ajax({
+			type: "POST",
+			url: "/changeprefs",
+			data: { col: col, new_state:$('#'+col).prop('checked') }
+		}).done(function( msg ) {
+		});
+	}
+
+	$(document).ready(function() {
+		{% if preferences.emailgift == 1 %}
+			$('#emailgift').prop('checked', true);
+		{% endif %}
+		{% if preferences.emaildeal == 1 %}
+			$('#emaildeal').prop('checked', true);
+		{% endif %}
+		{% if preferences.emailbulk == 1 %}
+			$('#emailbulk').prop('checked', true);
+		{% endif %}
+		{% if preferences.fbactivitypost == 1 %}
+			$('#fbactivitypost').prop('checked', true);
+		{% endif %}
+		$('#emailgift').click(function() {changeprefs("emailgift")});
+		$('#emaildeal').click(function() {changeprefs("emaildeal")});
+		$('#emailbulk').click(function() {changeprefs("emailbulk")});
+		$('#fbactivitypost').click(function() {changeprefs("fbactivitypost")});
+	});
+</script>
+{% endblock %}

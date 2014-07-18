@@ -1,0 +1,263 @@
+{% extends "m_base.html" %}
+{% block title %}{{ product.title }}{% endblock %}
+{% block cssincludes %}{% endblock %}
+{% block jsincludes %}{% endblock %}
+
+{% block pagedefinition %}
+	<div class="ui-responsive-panel" data-role="page" id="productpage-{{product.productid}}">
+{% endblock %}
+{% block content %}
+	<div data-role="content" class="product-wide">
+		<div class="product-narrow">
+			<div class="product-display">
+				<div class = "swiper-container">
+					<div class="productcontainer-productpage swiper-wrapper" data-pid="{{ product.productid }}">
+						{% for image in product.hashed_images %}
+							<div class="swiper-slide">
+								<img style="opacity:1;" class="product-page-image" id="img{{ product.productid }}" src="http://clipr.in/prodImage/{{ image }}-big.jpg" alt="{{ product.title }}">
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="image-pagination"></div>
+			</div>
+			<div class="product-title">
+				<h4>
+					{{ product.title }}
+				</h4>
+			</div>
+		</div> 
+		<div class="wide-element">
+			<div style="padding-left:15px;">
+				<div class="product-btns">
+					<div class="product-btn">
+						<a class="tag-btn" data-rel="dialog" data-inline="true" data-mini="true" data-transition="flip" data-theme="a" data-pid="{{ product.productid }}" href="/tagpage?pid={{ product.productid }}" data-role="button">Tag</a>
+					</div>
+					<div class="product-btn">
+						<button data-state="unclipped" data-inline="true" data-mini="true" class="clip-btn" style="" data-theme="a" data-pid="{{ product.productid }}" data-role="button"><span class="clip-btn-text">Clip</span></button>
+					</div>
+				</div>
+				<span class="num_clips">
+				{% if clippers %}
+					<a class="" href="/{{clippers.0.userid}}">{{ clippers.0.fullname }} </a> 
+					{% if num_clips > 1 %}
+						+ {{ num_clips|add:'-1' }} 
+					{% endif %}
+				{% else %}
+					<i class="no-clips">Be the first to Clip</i>
+				{% endif %}
+				</span>
+			</div>
+			{% if clippers %}
+				<div id="clippers{{product.productid}}" class="wide-element-content">
+				{% for clipper in clippers %}
+					<a rel="tooltip" data-placement="top" data-original-title="{{ clipper.first_name| add:' '| add:clipper.last_name }}" href="/{{clipper.userid}}" style="font-size:29px;text-decoration:none" class="ajax-link">
+						<img style="max-width:27px;padding-right:2px;padding-bottom:2px;" src="http://graph.facebook.com/{{clipper.userid}}/picture?type=square">
+					</a>
+				{% endfor %}
+				</div>
+			{% endif %}
+		</div>
+		<div class="wide-element">
+			<div class="wide-element-content price-div">
+				<span class="price">
+					{% if product.markprice and product.markprice > product.price %}
+					<span class="markprice"><span class="rupee">Rs.</span> {{product.markprice}}</span>
+					{% endif %}
+					<span class="sellprice"><span class="rupee">Rs.</span> {{product.price}}</span>
+				</span>
+				<div class="product-btn right">
+					<a class="buy-btn" data-inline="true"  data-mini="true" target="_blank" data-theme="c" data-pid="{{ product.productid }}" href="/cliprtransfer/{{ product.productid }}/{{ product.title_url }}" data-role="button">Buy</a>
+				</div>
+			</div>
+		</div>
+		{% if product.description %}
+			<div class = "wide-element">
+				<div class="heading">Description:</div>
+				<div class="wide-element-content description">
+				<div class = "gradient-overlay" data-expanded="false">
+				</div>
+					<div class="description-inner">
+						{{ description }}
+					</div>
+				</div>
+				<a href="#" data-role="button" data-theme="b" data-icon="arrow-d" data-iconpos="notext" data-iconshadow="false" class="more-less-btn ui-icon-nodisc">More</a>
+				<div class="desc-hr">
+					<hr>
+				</div>
+			</div>
+		{% endif %}
+		{% if similar_products %}
+			<div class="wide-element">
+				<div class="heading">You may also like:</div>
+				<div class = "swiper-container-similar">
+					<div class="similarcontainer-productpage swiper-wrapper" data-pid="{{ product.productid }}">
+						<div class="similar-slide">
+						{% for each_product in similar_products %}
+							<a href="/product/{{ each_product.productid }}/{{ each_product.title_url }}">
+								<div class="similarcontainer-productpage-inner" data-pid="{{ each_product.productid }}">
+									<div class="similar-wrapper">
+										<img class="similar-image" id="img-{{ each_product.productid }}" src="http://clipr.in/prodImage/{{ each_product.hashed_image }}-thumb.jpg" alt="{{ each_product.title }}">
+										<div id="similar-title{{ each_product.productid }}" class="similar-title">
+											{{ each_product.title }}
+										</div>
+									</div>
+								</div>
+							</a>
+						{% endfor %}
+						</div>
+					</div>
+					<div class="swiper-scrollbar"></div>
+				</div>
+			</div>
+		{% endif %}
+		{% if common_clippers_products %}
+			<div class="wide-element">
+				<div class="heading">People also liked:</div>
+				<div class = "swiper-container-common-clips">
+					<div class="similarcontainer-productpage swiper-wrapper" data-pid="{{ product.productid }}">
+						<div class="similar-slide">
+						{% for each_product in common_clippers_products %}
+							<a href="/product/{{ each_product.productid }}/{{ each_product.title_url }}">
+								<div class="similarcontainer-productpage-inner" data-pid="{{ each_product.productid }}">
+									<div class="similar-wrapper">
+										<img class="similar-image" id="img-{{ each_product.productid }}" src="http://clipr.in/prodImage/{{ each_product.hashed_image }}-thumb.jpg" alt="{{ each_product.title }}">
+										<div id="common-clip-title{{ each_product.productid }}" class="similar-title">
+											{{ each_product.title }}
+										</div>
+									</div>
+								</div>
+							</a>
+						{% endfor %}
+						</div>
+					</div>
+					<div class="swiper-scrollbar"></div>
+				</div>
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}
+{% block customjs %}{% endblock %}
+{% block onloadjs %}
+	{% with product.productid|stringformat:"s" as pid %}
+	{% with "#productpage-"|add:pid as pageId %}
+
+<script type="text/javascript">
+	function adjustProductWidth(){
+		var w = $(window).width();
+		if(parseInt(w) <= 360 )
+			$('.productpage-Link').width(parseInt(w));
+	}
+	$(document).on('pagebeforeshow', function(){
+		adjustProductWidth();
+		var clipbtn = $('.clip-btn');
+	{% if user.is_authenticated and clipped %}
+		changeToClipped(clipbtn);
+	{% else %}
+		changeToUnclipped(clipbtn);
+	{% endif %}
+	});
+
+	$('{{pageId}}').on('pageInit', function(){
+		// bind similar to buy btn
+
+	});
+
+	$('{{pageId}}').on('pageshow', function(){
+		// redirect to login page if user is logged out (data-rel = dialog cant redirect)
+		{% if not user.is_authenticated %}
+			$('{{pageId}} .tag-btn').click(function(e){
+				$(this).attr('data-rel','');
+			});
+		{% endif %}
+
+		// show similar products if product out of stock
+		$('{{pageId}} .buy-btn').unbind('click');
+		{% if is_removed_or_out_of_stock %}
+			$('{{pageId}} .buy-btn').click(function(e){
+				e.preventDefault();
+				$.mobile.changePage(
+					"#similar-popup-{{ product.productid }}", 
+					{ 
+						transition: "pop",
+						role: "dialog",
+						reverse: false
+					} 
+				);
+			})
+		{% endif %}
+
+		// initializing partial description
+		var descHeight=$('{{pageId}} .description-inner').height()+15;
+		$('{{pageId}} .description').css({'max-height':''});
+		$('{{pageId}} .gradient-overlay').unbind('click');
+		if( descHeight > 200){
+			$('{{pageId}} .gradient-overlay').show();
+			$('{{pageId}} .description').css({'overflow':'hidden','max-height':'200px'});
+			$('{{pageId}} .gradient-overlay,{{pageId}} .more-less-btn ').click(function(){
+				var overlayElem = $('{{pageId}} .gradient-overlay')
+				if(overlayElem.data('expanded') == "true")
+					contractDescription(overlayElem);
+				else
+					expandDescription(overlayElem, descHeight);
+			});
+		}
+		else{
+			expandDescription($('{{pageId}} .gradient-overlay'),descHeight);
+			$('{{pageId}} .more-less-btn').hide();
+			$('.desc-hr').hide();
+		}
+
+		// initializing swiper with scrollbar for similar products if 1) there exist similar products and 2) it hasnt been initialized 
+		{% if similar_products %}
+			if ($('{{pageId}} .swiper-container-similar .swiper-scrollbar div').length == 0)
+				var similarSwiper=$('{{pageId}} .swiper-container-similar').swiper({scrollContainer:true,scrollbar:{container:'{{pageId}} .swiper-container-similar .swiper-scrollbar'},slideClass:"similar-slide",grabCursor: true})
+		{% endif %}
+
+		// initializing swiper with scrollbar for common clipped products if 1) there exist such products and 2) it hasnt been initialized
+		{% if common_clippers_products %}
+			if ($('{{pageId}} .swiper-container-common-clips .swiper-scrollbar div').length == 0)
+				var similarSwiper=$('{{pageId}} .swiper-container-common-clips').swiper({scrollContainer:true,scrollbar:{container:'{{pageId}} .swiper-container-common-clips .swiper-scrollbar'},slideClass:"similar-slide",grabCursor: true})
+		{% endif %}
+
+		// initializing swiper for product images
+		var img = new Image();
+		img.onload = function() {
+			$('.swiper-container, .swiper-slide').height(this.height);
+			var mySwiper = $('{{pageId}} .swiper-container').swiper({grabCursor: true, mode:'horizontal',loop: false, pagination:'{{pageId}} .image-pagination'});
+			$('.image-pagination .swiper-pagination-switch').click(function(){mySwiper.swipeTo($(this).index())});
+		};
+		img.src = $('{{pageId}} .swiper-slide:nth(0) img').attr('src');
+	});
+</script>
+{% endwith %}
+{% endwith %}
+
+{% endblock %}
+
+<!-- similar products in popup if requested product does not exist -->
+{% block dialogpages %}
+	<div data-role="page" id="similar-popup-{{product.productid}}">
+		<div data-role="header" data-theme="a">
+			<h1 class="similar-dialog-heading">Product Removed or Out of Stock</h1>
+		</div>
+		<div data-role="content" data-theme="c">
+			<p class="dialog-text">
+				The product you are looking for has <b>either been removed or is out of stock.</b>
+				Check out these similar products.
+			</p>
+			{% for each_product in similar_products %}
+				<div class="similarproductcontainer" data-pid="{{ each_product.productid }}">
+					<a href="/product/{{ each_product.productid }}/{{each_product.title_url}}">
+						<div class="productcontainer-inner">
+							<img class="product-image" id="img-{{ each_product.productid }}" src="http://clipr.in/prodImage/{{ each_product.hashed_image }}-thumb.jpg" alt="{{ each_product.title }}">
+							<div id="trending-title{{ each_product.productid }}" class="trending-title">
+								{{ each_product.title }}
+							</div>
+						</div>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

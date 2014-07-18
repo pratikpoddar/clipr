@@ -1,0 +1,83 @@
+/* Reset CSS */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+ol,ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
+table{border-collapse:collapse;border-spacing:0}
+
+/* Accessibility Navigation & Hide */
+#accessibility-nav,.hide{position:absolute;top:-999em;left:-999em;height:1px;width:1px}
+.hidden{display:none !important}
+
+/* Clearfix */
+.clearfix:after,
+#header .inner:after,
+#navigation ul:after,
+.search-box:after,
+.pagination:after,
+.wrapper-content:after,
+#content:after,
+.figure-row:after,
+.figure-featured:after,
+.thing-section .wrapper-actions:after,
+.footer-nav:after,
+.page-deal-finished .summary:after,
+.page-deal-finished .details li:after,
+.page-deal-finished .gallery:after,
+.page-deal-create form .row:after,
+.notifications.altered .row:after,
+.deals .figure-product .remaining:after,
+.deal-buy .item:after,
+.deal-buy .process ul:after,
+.deal-buy form .row:after,
+.deal-buy form .row .cards:after,
+.deals .button-container:after,
+.deals .gallery .items:after,
+#showpopup .button-container:after,
+.fancy-popup:after,
+.fancy-popup .inner:after,
+.fancy-popup fieldset:after,
+.browse-alternate .follow-section:after,
+.browse .content-wrapper .listings:after{content:'.';display:block;visibility:hidden;clear:both;height:0}
+
+/* Default Style */
+body,input,select,button,textarea,select,p,a,label{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;margin:0;padding:0;vertical-align:baseline}
+textarea{overflow:auto}
+button{cursor:pointer}
+fieldset{text-align:left}
+a,a:visited{text-decoration:none;color:#1f518e;cursor:pointer}
+a:hover,a:active,a:focus{text-decoration:underline}
+
+/* round-corner */
+.rounded-4 {border-radius:4px}
+
+/* box shadow */
+.box-shadow-1 {box-shadow:0 1px 1px rgba(0,0,0,.1)}
+
+/* Icons */
+a.icon,i.icon {display:inline-block;background:transparent url(../images/common/icons.png) no-repeat 0 0;overflow:hidden;text-indent:-999em}
+.icon.slideshow_{width:15px;height:9px;background-position:-17px 0}
+a:hover .icon.slideshow_{background-position:0 0}
+.icon.customize_{width:9px;height:9px;background-position:-11px -13px}
+a:hover .icon.customize_{background-position:0 -13px}
+.icon.avatar_plus_{width:45px;height:43px;background-position:0 -25px}
+.icon.close_{width:8px;height:8px;background-position:-36px -1px}
+
+/* Buttons */
+.bttn,.bttn:visited,.bttn:hover,.bttn:active,.bttn:focus {display:inline-block;padding:10px 12px;border:0;border-radius:3px;white-space:nowrap;color:#fff;font-size:13px;font-weight:bold;text-decoration:none}
+.bttn.blue {background:#4380c9}
+
+/* Invitation reminder */
+#invitation-reminder {position:relative;background:#fff;margin:0 0 15px 70px;padding:16px;color:#999}
+#invitation-reminder p {margin:0 150px 0 64px;padding:0;line-height:1}
+#invitation-reminder strong {display:block;font-size:16px;color:#444;line-height:1.4}
+#invitation-reminder .bttn {float:right}
+#invitation-reminder .close_ {position:absolute;top:9px;left:9px}
+#invitation-reminder .avatar_plus_ {position:absolute;top:15px;left:23px}
+.cart-list #invitation-reminder {width:580px;border:1px solid #eee;margin:-10px auto 30px}
+
+/* Teaser */
+.teaser{padding:30px 20px 0;margin-left:70px}
+.teaser h1{font-size:32px;line-height:1.1;margin:0}
+.teaser p{font-size:18px;line-height:1.2;color:#8a8f9c}

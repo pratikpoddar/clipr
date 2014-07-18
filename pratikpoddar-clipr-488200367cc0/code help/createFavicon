@@ -1,0 +1,10 @@
+convert clipr_curve_c.png -transparent white baseimage.png
+convert baseimage.png - resize 105x105 -background white -compose Copy -gravity center -extent 105x105 -quality 92 baseimage2.png
+convert baseimage2.png -transparent white baseimage3.png
+convert baseimage3.png -resize 16x16 favicon.ico
+convert baseimage3.png -resize 114x114 apple-touch-icon-114x114-precomposed.png
+convert baseimage3.png -resize 57x57 apple-touch-icon-57x57-precomposed.png
+convert baseimage3.png -resize 72x72 apple-touch-icon-72x72-precomposed.png
+
+
+
